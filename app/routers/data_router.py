@@ -3,12 +3,14 @@ from ..config import get_config
 from ..dependencies import fetch_data, post_data
 from ..models import Department, Employee
 from ..schemas import PostResponse
+from ..logger import log_decorator, logger
 import json
 
 router = APIRouter()
 
 
 @router.get("/process-data/", response_model=PostResponse)
+@log_decorator
 async def process_data():
     config = get_config()
     url_get = config['API']['URL_GET']
